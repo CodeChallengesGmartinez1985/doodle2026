@@ -1,0 +1,13 @@
+package com.doodle.scheduler.application;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DoodleSchedulerHexagonalApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DoodleSchedulerHexagonalApplication.class, args);
+	}
+
+}
