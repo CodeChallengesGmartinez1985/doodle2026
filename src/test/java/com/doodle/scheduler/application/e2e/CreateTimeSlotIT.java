@@ -1,4 +1,4 @@
-package com.doodle.scheduler.e2e;
+package com.doodle.scheduler.application.e2e;
 
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.CreateTimeSlotRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.TimeSlotResponseDto;

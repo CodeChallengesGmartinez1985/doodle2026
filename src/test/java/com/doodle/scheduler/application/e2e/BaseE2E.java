@@ -1,4 +1,4 @@
-package com.doodle.scheduler.e2e;
+package com.doodle.scheduler.application.e2e;
 
 import com.doodle.scheduler.application.DoodleSchedulerHexagonalApplication;
 import org.springframework.beans.factory.annotation.Autowired;
