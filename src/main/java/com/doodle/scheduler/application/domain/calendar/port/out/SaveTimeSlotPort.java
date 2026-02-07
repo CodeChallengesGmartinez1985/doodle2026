@@ -1,4 +1,4 @@
-package com.doodle.scheduler.application.domain.port.out.timeslot;
+package com.doodle.scheduler.application.domain.calendar.port.out;
 
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
 

@@ -2,8 +2,8 @@ package com.doodle.scheduler.application.config.usecase.createtimeslot;
 
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.LoggedCreateTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.TransactionalCreateTimeSlotUseCaseDecorator;
-import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
-import com.doodle.scheduler.application.domain.service.calendar.CreateTimeSlotServiceImpl;
+import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.service.CreateTimeSlotServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

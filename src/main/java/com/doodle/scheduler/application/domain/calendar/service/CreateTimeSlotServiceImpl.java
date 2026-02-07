@@ -1,12 +1,12 @@
-package com.doodle.scheduler.application.domain.service.calendar;
+package com.doodle.scheduler.application.domain.calendar.service;
 
 import com.doodle.scheduler.application.domain.calendar.model.Calendar;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.commands.calendar.CreateTimeSlotCommand;
-import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
-import com.doodle.scheduler.application.domain.port.out.timeslot.LoadTimeSlotsByUserPort;
-import com.doodle.scheduler.application.domain.port.out.timeslot.SaveTimeSlotPort;
-import com.doodle.scheduler.application.domain.port.out.user.LoadUserByUsernamePort;
+import com.doodle.scheduler.application.domain.calendar.command.CreateTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotsByUserPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.SaveTimeSlotPort;
+import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;
 import com.doodle.scheduler.application.domain.user.model.User;
 
 import java.util.List;

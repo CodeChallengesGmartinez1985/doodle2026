@@ -9,21 +9,18 @@ import com.doodle.scheduler.application.domain.calendar.exception.TimeRangeInval
 import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotCollisionException;
 import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotInvalidIdException;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.commands.calendar.CreateTimeSlotCommand;
-import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.command.CreateTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
 import com.doodle.scheduler.application.domain.user.exception.UserNotFoundException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Instant;
 import java.util.UUID;

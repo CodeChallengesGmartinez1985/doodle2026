@@ -5,8 +5,8 @@ import com.doodle.scheduler.application.adapter.in.rest.timeslot.common.BaseTime
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.CreateTimeSlotRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.TimeSlotResponseDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.mapper.TimeSlotDtoMapper;
-import com.doodle.scheduler.application.domain.commands.calendar.CreateTimeSlotCommand;
-import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.command.CreateTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

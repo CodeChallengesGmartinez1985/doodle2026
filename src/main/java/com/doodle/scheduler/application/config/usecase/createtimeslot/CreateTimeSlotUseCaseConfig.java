@@ -2,11 +2,11 @@ package com.doodle.scheduler.application.config.usecase.createtimeslot;
 
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.LoggedCreateTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.TransactionalCreateTimeSlotUseCaseDecorator;
-import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
-import com.doodle.scheduler.application.domain.port.out.timeslot.LoadTimeSlotsByUserPort;
-import com.doodle.scheduler.application.domain.port.out.timeslot.SaveTimeSlotPort;
-import com.doodle.scheduler.application.domain.port.out.user.LoadUserByUsernamePort;
-import com.doodle.scheduler.application.domain.service.calendar.CreateTimeSlotServiceImpl;
+import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotsByUserPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.SaveTimeSlotPort;
+import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;
+import com.doodle.scheduler.application.domain.calendar.service.CreateTimeSlotServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

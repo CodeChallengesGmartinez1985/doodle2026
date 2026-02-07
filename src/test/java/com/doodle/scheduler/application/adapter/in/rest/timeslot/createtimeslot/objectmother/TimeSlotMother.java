@@ -3,7 +3,7 @@ package com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.CreateTimeSlotRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.TimeSlotResponseDto;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.commands.calendar.CreateTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.command.CreateTimeSlotCommand;
 
 import java.time.Instant;
 import java.util.UUID;

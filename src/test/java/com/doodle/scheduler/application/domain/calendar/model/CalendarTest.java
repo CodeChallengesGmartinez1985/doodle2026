@@ -1,6 +1,9 @@
 package com.doodle.scheduler.application.domain.calendar.model;
 
-import com.doodle.scheduler.application.domain.calendar.exception.*;
+import com.doodle.scheduler.application.domain.calendar.exception.SlotAssignedToMeetingException;
+import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotCollisionException;
+import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotNotAvailableException;
+import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotNotFoundException;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingDescription;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingDetails;
