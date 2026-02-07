@@ -22,6 +22,10 @@ public class User extends AggregateRoot {
         return new User(UUID.randomUUID(), u);
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     /**
      * Private methods / constructors
      */

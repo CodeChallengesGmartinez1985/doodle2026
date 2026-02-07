@@ -14,4 +14,9 @@ public final class BusyState extends SlotState {
     public SlotState markAvailable() {
         return AvailableState.INSTANCE;
     }
+
+    @Override
+    public String getStateString() {
+        return "BUSY";
+    }
 }

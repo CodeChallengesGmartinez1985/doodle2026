@@ -25,6 +25,8 @@ public abstract class SlotState {
         return false;
     }
 
+    public abstract String getStateString();
+
     /**
      * Protected methods / constructors
      */

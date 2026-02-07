@@ -39,6 +39,10 @@ public class Calendar extends AggregateRoot {
         return new Calendar(UUID.randomUUID(), ownerId);
     }
 
+    public UUID getOwnerId() {
+        return ownerId;
+    }
+
     public UUID addTimeSlot(Instant start, int durationMinutes) {
         UUID id = UUID.randomUUID();
         TimeSlot candidate = TimeSlot.create(id, start, durationMinutes);
@@ -46,6 +50,7 @@ public class Calendar extends AggregateRoot {
         if (slots.containsKey(id)) {
             throw new TimeSlotInvalidIdException("time slot id collision: " + id);
         }
+        candidate.setCalendar(this);
         slots.put(id, candidate);
         slotsByStart.add(candidate);
         return id;
@@ -65,7 +70,7 @@ public class Calendar extends AggregateRoot {
 
     public void deleteTimeSlot(UUID slotId) {
         Objects.requireNonNull(slotId, "slotId must not be null");
-        boolean isSlotAssignedToMeeting = meetings.stream().anyMatch(m -> m.getSlotIds().contains(slotId));
+        boolean isSlotAssignedToMeeting = meetings.stream().anyMatch(m -> m.getSlotId().equals(slotId));
         if (isSlotAssignedToMeeting) {
             throw new SlotAssignedToMeetingException("time slot is used by a meeting and cannot be deleted");
         }

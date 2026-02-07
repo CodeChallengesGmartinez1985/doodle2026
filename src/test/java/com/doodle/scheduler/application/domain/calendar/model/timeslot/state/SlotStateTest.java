@@ -65,6 +65,28 @@ class SlotStateTest {
             assertTrue(exception.getMessage().contains("Cannot"));
             assertTrue(exception.getMessage().contains("markAvailable"));
         }
+
+        @Test
+        @DisplayName("Should return correct state string")
+        void shouldReturnCorrectStateString() {
+            SlotState state = AvailableState.INSTANCE;
+
+            assertEquals("AVAILABLE", state.getStateString());
+        }
+
+        @Test
+        @DisplayName("Should return consistent state string across multiple calls")
+        void shouldReturnConsistentStateString() {
+            SlotState state = AvailableState.INSTANCE;
+
+            String state1 = state.getStateString();
+            String state2 = state.getStateString();
+            String state3 = state.getStateString();
+
+            assertEquals(state1, state2);
+            assertEquals(state2, state3);
+            assertEquals("AVAILABLE", state1);
+        }
     }
 
     @Nested
@@ -121,6 +143,28 @@ class SlotStateTest {
 
             assertTrue(exception.getMessage().contains("Cannot"));
             assertTrue(exception.getMessage().contains("markBusy"));
+        }
+
+        @Test
+        @DisplayName("Should return correct state string")
+        void shouldReturnCorrectStateString() {
+            SlotState state = BusyState.INSTANCE;
+
+            assertEquals("BUSY", state.getStateString());
+        }
+
+        @Test
+        @DisplayName("Should return consistent state string across multiple calls")
+        void shouldReturnConsistentStateString() {
+            SlotState state = BusyState.INSTANCE;
+
+            String state1 = state.getStateString();
+            String state2 = state.getStateString();
+            String state3 = state.getStateString();
+
+            assertEquals(state1, state2);
+            assertEquals(state2, state3);
+            assertEquals("BUSY", state1);
         }
     }
 

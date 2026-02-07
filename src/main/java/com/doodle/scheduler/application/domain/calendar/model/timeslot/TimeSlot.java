@@ -3,6 +3,7 @@ package com.doodle.scheduler.application.domain.calendar.model.timeslot;
 import com.doodle.scheduler.application.domain.common.model.Entity;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.state.AvailableState;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.state.SlotState;
+import com.doodle.scheduler.application.domain.calendar.model.Calendar;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -14,6 +15,7 @@ public class TimeSlot extends Entity {
      */
     private TimeRange range;
     private SlotState state;
+    private Calendar calendar;
 
     /**
      * Public API
@@ -32,6 +34,22 @@ public class TimeSlot extends Entity {
         return state;
     }
 
+    public String getStateString() {
+        return state.getStateString();
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
+    }
+
+    public UUID getOwnerId() {
+        return calendar != null ? calendar.getOwnerId() : null;
+    }
+
     public void changeTimeRange(Instant start, int durationMinutes) {
         this.range = TimeRange.of(start, durationMinutes);
     }
@@ -42,6 +60,10 @@ public class TimeSlot extends Entity {
 
     public void markAvailable() {
         this.state = state.markAvailable();
+    }
+
+    public long getDurationMinutes() {
+        return range.end().toEpochMilli() - range.start().toEpochMilli();
     }
 
     /**

@@ -48,6 +48,28 @@ class MeetingStateTest {
             assertTrue(state instanceof MeetingState);
             assertTrue(state instanceof ScheduledState);
         }
+
+        @Test
+        @DisplayName("Should return correct state string")
+        void shouldReturnCorrectStateString() {
+            MeetingState state = ScheduledState.INSTANCE;
+
+            assertEquals("SCHEDULED", state.getStateString());
+        }
+
+        @Test
+        @DisplayName("Should return consistent state string across multiple calls")
+        void shouldReturnConsistentStateString() {
+            MeetingState state = ScheduledState.INSTANCE;
+
+            String state1 = state.getStateString();
+            String state2 = state.getStateString();
+            String state3 = state.getStateString();
+
+            assertEquals(state1, state2);
+            assertEquals(state2, state3);
+            assertEquals("SCHEDULED", state1);
+        }
     }
 
     @Nested

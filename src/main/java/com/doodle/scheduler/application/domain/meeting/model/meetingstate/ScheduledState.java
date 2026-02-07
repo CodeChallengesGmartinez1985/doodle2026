@@ -9,4 +9,9 @@ public final class ScheduledState extends MeetingState {
     public boolean isScheduled() {
         return true;
     }
+
+    @Override
+    public String getStateString() {
+        return "SCHEDULED";
+    }
 }

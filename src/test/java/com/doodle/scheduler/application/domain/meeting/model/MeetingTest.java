@@ -32,8 +32,7 @@ class MeetingTest {
 
             assertNotNull(meeting);
             assertNotNull(meeting.getId());
-            assertEquals(1, meeting.getSlotIds().size());
-            assertTrue(meeting.getSlotIds().contains(slotId));
+            assertEquals(slotId, meeting.getSlotId());
         }
 
         @Test
@@ -79,7 +78,6 @@ class MeetingTest {
                     new MeetingDescription("Desc"),
                     Set.of(UUID.randomUUID())
             );
-
             assertThrows(MeetingCreationException.class, () -> Meeting.create(details, List.of()));
         }
 
@@ -104,25 +102,6 @@ class MeetingTest {
     @DisplayName("Meeting Accessors")
     class AccessorTests {
 
-        @Test
-        @DisplayName("Should return defensive copy of slot IDs")
-        void shouldReturnDefensiveCopyOfSlotIds() {
-            MeetingDetails details = new MeetingDetails(
-                    new MeetingTitle("Title"),
-                    new MeetingDescription("Desc"),
-                    Set.of(UUID.randomUUID())
-            );
-            UUID slot1 = UUID.randomUUID();
-
-            Meeting meeting = Meeting.create(details, List.of(slot1));
-
-            List<UUID> slotIds = meeting.getSlotIds();
-
-            assertThrows(UnsupportedOperationException.class,
-                    () -> slotIds.add(UUID.randomUUID()));
-
-            assertEquals(1, meeting.getSlotIds().size());
-        }
 
         @Test
         @DisplayName("Should return correct single slot ID")
@@ -136,9 +115,91 @@ class MeetingTest {
 
             Meeting meeting = Meeting.create(details, List.of(slot1));
 
-            List<UUID> slotIds = meeting.getSlotIds();
-            assertEquals(1, slotIds.size());
-            assertTrue(slotIds.contains(slot1));
+            assertEquals(slot1, meeting.getSlotId());
+        }
+    }
+
+    @Nested
+    @DisplayName("Meeting State and String Representation")
+    class StateAndStringTests {
+
+        @Test
+        @DisplayName("Should return meeting state")
+        void shouldReturnMeetingState() {
+            MeetingDetails details = new MeetingDetails(
+                    new MeetingTitle("Title"),
+                    new MeetingDescription("Desc"),
+                    Set.of(UUID.randomUUID())
+            );
+            UUID slotId = UUID.randomUUID();
+
+            Meeting meeting = Meeting.create(details, List.of(slotId));
+
+            assertNotNull(meeting.getState());
+        }
+
+        @Test
+        @DisplayName("Should return state string representation")
+        void shouldReturnStateString() {
+            MeetingDetails details = new MeetingDetails(
+                    new MeetingTitle("Title"),
+                    new MeetingDescription("Desc"),
+                    Set.of(UUID.randomUUID())
+            );
+            UUID slotId = UUID.randomUUID();
+
+            Meeting meeting = Meeting.create(details, List.of(slotId));
+
+            String stateString = meeting.getStateString();
+            assertNotNull(stateString);
+            assertEquals("SCHEDULED", stateString);
+        }
+
+        @Test
+        @DisplayName("Should return meeting title string")
+        void shouldReturnMeetingTitle() {
+            String titleText = "Team Sync";
+            MeetingDetails details = new MeetingDetails(
+                    new MeetingTitle(titleText),
+                    new MeetingDescription("Weekly sync"),
+                    Set.of(UUID.randomUUID())
+            );
+            UUID slotId = UUID.randomUUID();
+
+            Meeting meeting = Meeting.create(details, List.of(slotId));
+
+            assertEquals(titleText, meeting.getTitle());
+        }
+
+        @Test
+        @DisplayName("Should return meeting description string")
+        void shouldReturnMeetingDescription() {
+            String descriptionText = "Discuss sprint progress";
+            MeetingDetails details = new MeetingDetails(
+                    new MeetingTitle("Sprint Planning"),
+                    new MeetingDescription(descriptionText),
+                    Set.of(UUID.randomUUID())
+            );
+            UUID slotId = UUID.randomUUID();
+
+            Meeting meeting = Meeting.create(details, List.of(slotId));
+
+            assertEquals(descriptionText, meeting.getDescription());
+        }
+
+        @Test
+        @DisplayName("Should return meeting details object")
+        void shouldReturnMeetingDetails() {
+            MeetingDetails details = new MeetingDetails(
+                    new MeetingTitle("Title"),
+                    new MeetingDescription("Desc"),
+                    Set.of(UUID.randomUUID())
+            );
+            UUID slotId = UUID.randomUUID();
+
+            Meeting meeting = Meeting.create(details, List.of(slotId));
+
+            assertEquals(details, meeting.getDetails());
         }
     }
 }

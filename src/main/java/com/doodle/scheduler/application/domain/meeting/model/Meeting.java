@@ -22,8 +22,28 @@ public class Meeting extends Entity {
         return new Meeting(UUID.randomUUID(), details, List.copyOf(slotIds), com.doodle.scheduler.application.domain.meeting.model.meetingstate.ScheduledState.INSTANCE);
     }
 
-    public List<UUID> getSlotIds() {
-        return List.copyOf(slotIds);
+    public UUID getSlotId() {
+        return slotIds.get(0);
+    }
+
+    public MeetingDetails getDetails() {
+        return details;
+    }
+
+    public MeetingState getState() {
+        return state;
+    }
+
+    public String getStateString() {
+        return state.getStateString();
+    }
+
+    public String getTitle() {
+        return details.meetingTitle().value();
+    }
+
+    public String getDescription() {
+        return details.meetingDescription().value();
     }
 
     private Meeting(UUID id, MeetingDetails details, List<UUID> slotIds, com.doodle.scheduler.application.domain.meeting.model.meetingstate.MeetingState initialState) {
