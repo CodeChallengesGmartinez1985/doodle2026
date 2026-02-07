@@ -1,0 +1,36 @@
+package com.doodle.scheduler.application.domain.service.calendar;
+
+import com.doodle.scheduler.application.domain.calendar.model.Calendar;
+import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
+import com.doodle.scheduler.application.domain.commands.calendar.CreateTimeSlotCommand;
+import com.doodle.scheduler.application.domain.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.port.out.timeslot.LoadTimeSlotsByUserPort;
+import com.doodle.scheduler.application.domain.port.out.timeslot.SaveTimeSlotPort;
+import com.doodle.scheduler.application.domain.port.out.user.LoadUserByUsernamePort;
+import com.doodle.scheduler.application.domain.user.model.User;
+
+import java.util.List;
+import java.util.UUID;
+
+public class CreateTimeSlotServiceImpl implements CreateTimeSlotUseCase {
+
+    private final LoadUserByUsernamePort loadUserByUsernamePort;
+    private final LoadTimeSlotsByUserPort loadTimeSlotsByUserPort;
+    private final SaveTimeSlotPort saveTimeSlotPort;
+
+    public CreateTimeSlotServiceImpl(LoadUserByUsernamePort loadUserByUsernamePort, LoadTimeSlotsByUserPort loadTimeSlotsByUserPort, SaveTimeSlotPort saveTimeSlotPort) {
+        this.loadUserByUsernamePort = loadUserByUsernamePort;
+        this.loadTimeSlotsByUserPort = loadTimeSlotsByUserPort;
+        this.saveTimeSlotPort = saveTimeSlotPort;
+    }
+
+    @Override
+    public TimeSlot execute(CreateTimeSlotCommand command) {
+        User user = loadUserByUsernamePort.loadUserByUsername(command.username());
+        UUID userId = user.getId();
+        List<TimeSlot> existingSlots = loadTimeSlotsByUserPort.loadTimeSlotsByUserId(userId);
+        Calendar calendar = Calendar.createWithSlots(userId, existingSlots);
+        TimeSlot newSlot = calendar.addTimeSlot(command.start(), command.durationMinutes());
+        return saveTimeSlotPort.saveTimeSlot(newSlot);
+    }
+}

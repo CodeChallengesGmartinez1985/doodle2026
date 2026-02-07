@@ -3,8 +3,5 @@ CREATE TABLE meetings (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     time_slot_id UUID NOT NULL REFERENCES time_slots(id) ON DELETE CASCADE,
-    state VARCHAR(50) NOT NULL DEFAULT 'SCHEDULED',
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    updated_at TIMESTAMP WITH TIME ZONE NOT NULL
+    state VARCHAR(50) NOT NULL DEFAULT 'SCHEDULED'
 );
-

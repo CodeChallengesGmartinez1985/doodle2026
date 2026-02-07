@@ -1,4 +1,4 @@
-package com.doodle.scheduler.application.adapter.out.persistence.common;
+package com.doodle.scheduler.application.adapter.out.persistence.meeting.common;
 
 import com.doodle.scheduler.application.domain.meeting.model.Meeting;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingDetails;
@@ -31,13 +31,5 @@ public interface MeetingJpaMapper {
     @Mapping(target = "description", expression = "java(meeting.getDescription())")
     @Mapping(target = "timeSlotId", expression = "java(meeting.getSlotId())")
     @Mapping(target = "state", expression = "java(meeting.getStateString())")
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
     MeetingJpaEntity toJpaEntity(Meeting meeting);
 }
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 package com.doodle.scheduler.application.domain.calendar.model;
 
 import com.doodle.scheduler.application.domain.calendar.exception.*;
+import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingDescription;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingDetails;
 import com.doodle.scheduler.application.domain.meeting.model.MeetingTitle;
@@ -60,9 +61,9 @@ class CalendarTest {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
 
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
-            assertNotNull(slotId);
+            assertNotNull(slot);
         }
 
         @Test
@@ -72,10 +73,10 @@ class CalendarTest {
             Instant start1 = Instant.parse("2026-02-05T10:00:00Z");
             Instant start2 = Instant.parse("2026-02-05T11:00:00Z");
 
-            UUID slot1 = calendar.addTimeSlot(start1, 60);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot1 = calendar.addTimeSlot(start1, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
 
-            assertNotEquals(slot1, slot2);
+            assertNotEquals(slot1.getId(), slot2.getId());
         }
 
         @Test
@@ -85,8 +86,8 @@ class CalendarTest {
             Instant start1 = Instant.parse("2026-02-05T10:00:00Z");
             Instant start2 = Instant.parse("2026-02-05T12:00:00Z");
 
-            UUID slot1 = calendar.addTimeSlot(start1, 60);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot1 = calendar.addTimeSlot(start1, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
 
             assertNotNull(slot1);
             assertNotNull(slot2);
@@ -119,7 +120,7 @@ class CalendarTest {
             calendar.addTimeSlot(start1, 60);
 
             Instant start2 = start1.plusSeconds(3600);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
 
             assertNotNull(slot2);
         }
@@ -133,7 +134,7 @@ class CalendarTest {
             calendar.addTimeSlot(start1, 60);
 
             Instant start2 = start1.plusSeconds(5400);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
 
             assertNotNull(slot2);
         }
@@ -148,12 +149,12 @@ class CalendarTest {
         void shouldUpdateTimeSlotSuccessfully() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start1 = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start1, 60);
+            TimeSlot slot = calendar.addTimeSlot(start1, 60);
 
             Instant newStart = Instant.parse("2026-02-05T14:00:00Z");
-            calendar.updateTimeSlot(slotId, newStart, 90);
+            calendar.updateTimeSlot(slot.getId(), newStart, 90);
 
-            assertNotNull(slotId);
+            assertNotNull(slot.getId());
         }
 
         @Test
@@ -176,11 +177,11 @@ class CalendarTest {
         void shouldDeleteUnassignedSlotSuccessfully() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
-            calendar.deleteTimeSlot(slotId);
+            calendar.deleteTimeSlot(slot.getId());
 
-            assertNotNull(slotId);
+            assertNotNull(slot.getId());
         }
 
         @Test
@@ -188,17 +189,17 @@ class CalendarTest {
         void shouldRejectDeletionOfSlotAssignedToMeeting() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
             MeetingDetails details = new MeetingDetails(
                     new MeetingTitle("Title"),
                     new MeetingDescription("Desc"),
                     Set.of(UUID.randomUUID())
             );
-            calendar.scheduleMeeting(slotId, details);
+            calendar.scheduleMeeting(slot.getId(), details);
 
             assertThrows(SlotAssignedToMeetingException.class,
-                    () -> calendar.deleteTimeSlot(slotId));
+                    () -> calendar.deleteTimeSlot(slot.getId()));
         }
     }
 
@@ -211,11 +212,11 @@ class CalendarTest {
         void shouldMarkSlotBusy() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
-            calendar.markTimeSlotBusy(slotId);
+            calendar.markTimeSlotBusy(slot.getId());
 
-            assertNotNull(slotId);
+            assertNotNull(slot.getId());
         }
 
         @Test
@@ -223,12 +224,12 @@ class CalendarTest {
         void shouldMarkSlotAvailable() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
-            calendar.markTimeSlotBusy(slotId);
-            calendar.markTimeSlotAvailable(slotId);
+            calendar.markTimeSlotBusy(slot.getId());
+            calendar.markTimeSlotAvailable(slot.getId());
 
-            assertNotNull(slotId);
+            assertNotNull(slot.getId());
         }
     }
 
@@ -241,14 +242,14 @@ class CalendarTest {
         void shouldScheduleMeetingOnAvailableSlot() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
             MeetingDetails details = new MeetingDetails(
                     new MeetingTitle("Title"),
                     new MeetingDescription("Desc"),
                     Set.of(UUID.randomUUID())
             );
 
-            UUID meetingId = calendar.scheduleMeeting(slotId, details);
+            UUID meetingId = calendar.scheduleMeeting(slot.getId(), details);
 
             assertNotNull(meetingId);
         }
@@ -273,9 +274,9 @@ class CalendarTest {
         void shouldRejectSchedulingOnBusySlot() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
 
-            calendar.markTimeSlotBusy(slotId);
+            calendar.markTimeSlotBusy(slot.getId());
 
             MeetingDetails details = new MeetingDetails(
                     new MeetingTitle("Title"),
@@ -284,7 +285,7 @@ class CalendarTest {
             );
 
             assertThrows(TimeSlotNotAvailableException.class,
-                    () -> calendar.scheduleMeeting(slotId, details));
+                    () -> calendar.scheduleMeeting(slot.getId(), details));
         }
 
         @Test
@@ -292,14 +293,14 @@ class CalendarTest {
         void shouldMarkSlotBusyAfterSchedulingMeeting() {
             Calendar calendar = Calendar.create(UUID.randomUUID());
             Instant start = Instant.parse("2026-02-05T10:00:00Z");
-            UUID slotId = calendar.addTimeSlot(start, 60);
+            TimeSlot slot = calendar.addTimeSlot(start, 60);
             MeetingDetails details = new MeetingDetails(
                     new MeetingTitle("Title"),
                     new MeetingDescription("Desc"),
                     Set.of(UUID.randomUUID())
             );
 
-            calendar.scheduleMeeting(slotId, details);
+            calendar.scheduleMeeting(slot.getId(), details);
 
             MeetingDetails details2 = new MeetingDetails(
                     new MeetingTitle("Title2"),
@@ -307,7 +308,7 @@ class CalendarTest {
                     Set.of(UUID.randomUUID())
             );
             assertThrows(TimeSlotNotAvailableException.class,
-                    () -> calendar.scheduleMeeting(slotId, details2));
+                    () -> calendar.scheduleMeeting(slot.getId(), details2));
         }
     }
 
@@ -324,21 +325,21 @@ class CalendarTest {
             Instant start2 = Instant.parse("2026-02-05T12:00:00Z");
             Instant start3 = Instant.parse("2026-02-05T14:00:00Z");
 
-            UUID slot1 = calendar.addTimeSlot(start1, 60);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
-            UUID slot3 = calendar.addTimeSlot(start3, 60);
+            TimeSlot slot1 = calendar.addTimeSlot(start1, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot3 = calendar.addTimeSlot(start3, 60);
 
             MeetingDetails details = new MeetingDetails(
                     new MeetingTitle("Title"),
                     new MeetingDescription("Desc"),
                     Set.of(UUID.randomUUID())
             );
-            UUID meetingId = calendar.scheduleMeeting(slot1, details);
+            UUID meetingId = calendar.scheduleMeeting(slot1.getId(), details);
 
-            calendar.deleteTimeSlot(slot3);
+            calendar.deleteTimeSlot(slot3.getId());
 
             assertThrows(SlotAssignedToMeetingException.class,
-                    () -> calendar.deleteTimeSlot(slot1));
+                    () -> calendar.deleteTimeSlot(slot1.getId()));
 
             assertNotNull(meetingId);
         }
@@ -351,8 +352,8 @@ class CalendarTest {
             Instant start1 = Instant.parse("2026-02-05T10:00:00Z");
             Instant start2 = Instant.parse("2026-02-05T12:00:00Z");
 
-            UUID slot1 = calendar.addTimeSlot(start1, 60);
-            UUID slot2 = calendar.addTimeSlot(start2, 60);
+            TimeSlot slot1 = calendar.addTimeSlot(start1, 60);
+            TimeSlot slot2 = calendar.addTimeSlot(start2, 60);
 
             MeetingDetails details1 = new MeetingDetails(
                     new MeetingTitle("Title1"),
@@ -365,8 +366,8 @@ class CalendarTest {
                     Set.of(UUID.randomUUID())
             );
 
-            UUID meeting1 = calendar.scheduleMeeting(slot1, details1);
-            UUID meeting2 = calendar.scheduleMeeting(slot2, details2);
+            UUID meeting1 = calendar.scheduleMeeting(slot1.getId(), details1);
+            UUID meeting2 = calendar.scheduleMeeting(slot2.getId(), details2);
 
             assertNotEquals(meeting1, meeting2);
         }

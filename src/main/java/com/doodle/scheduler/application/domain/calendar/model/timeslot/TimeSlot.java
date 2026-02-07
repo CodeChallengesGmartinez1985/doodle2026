@@ -63,7 +63,8 @@ public class TimeSlot extends Entity {
     }
 
     public long getDurationMinutes() {
-        return range.end().toEpochMilli() - range.start().toEpochMilli();
+        long durationMillis = range.end().toEpochMilli() - range.start().toEpochMilli();
+        return durationMillis / 60_000;
     }
 
     /**

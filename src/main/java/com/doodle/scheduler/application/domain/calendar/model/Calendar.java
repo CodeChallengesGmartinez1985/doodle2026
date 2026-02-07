@@ -13,6 +13,8 @@ import com.doodle.scheduler.application.domain.meeting.model.MeetingDetails;
 
 import java.time.Instant;
 import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
@@ -39,21 +41,40 @@ public class Calendar extends AggregateRoot {
         return new Calendar(UUID.randomUUID(), ownerId);
     }
 
+    public static Calendar createWithSlots(UUID userId, List<TimeSlot> slots) {
+        Calendar calendar = create(userId);
+        for (TimeSlot slot : slots) {
+            slot.setCalendar(calendar);
+            calendar.addTimeSlotInternal(slot, false);
+        }
+        return calendar;
+    }
+
     public UUID getOwnerId() {
         return ownerId;
     }
 
-    public UUID addTimeSlot(Instant start, int durationMinutes) {
+    public TimeSlot addTimeSlot(Instant start, int durationMinutes) {
         UUID id = UUID.randomUUID();
         TimeSlot candidate = TimeSlot.create(id, start, durationMinutes);
-        validateNoOverlap(candidate, null);
-        if (slots.containsKey(id)) {
-            throw new TimeSlotInvalidIdException("time slot id collision: " + id);
+        addTimeSlotInternal(candidate, true);
+        return candidate;
+    }
+
+    private void addTimeSlotInternal(TimeSlot slot, boolean shouldValidateOverlap) {
+        Objects.requireNonNull(slot, "slot must not be null");
+        Objects.requireNonNull(slot.getId(), "slot id must not be null");
+
+        if (shouldValidateOverlap) {
+            validateNoOverlap(slot, null);
+            if (slots.containsKey(slot.getId())) {
+                throw new TimeSlotInvalidIdException("time slot id collision: " + slot.getId());
+            }
         }
-        candidate.setCalendar(this);
-        slots.put(id, candidate);
-        slotsByStart.add(candidate);
-        return id;
+
+        slot.setCalendar(this);
+        slots.put(slot.getId(), slot);
+        slotsByStart.add(slot);
     }
 
     public void updateTimeSlot(UUID slotId, Instant start, int durationMinutes) {

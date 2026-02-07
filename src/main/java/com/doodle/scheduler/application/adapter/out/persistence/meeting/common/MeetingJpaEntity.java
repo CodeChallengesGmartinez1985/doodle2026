@@ -1,13 +1,9 @@
-package com.doodle.scheduler.application.adapter.out.persistence.common;
+package com.doodle.scheduler.application.adapter.out.persistence.meeting.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -32,14 +28,4 @@ public class MeetingJpaEntity {
 
     @Column(name = "state", nullable = false)
     private String state;
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private Instant createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at", nullable = false)
-    private Instant updatedAt;
 }
-
-

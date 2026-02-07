@@ -1,4 +1,4 @@
-package com.doodle.scheduler.application.adapter.out.persistence.common;
+package com.doodle.scheduler.application.adapter.out.persistence.meeting.common;
 
 import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
