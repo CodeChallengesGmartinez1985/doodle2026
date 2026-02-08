@@ -1,0 +1,55 @@
+# Build artifacts
+../target/
+!../target/*.jar
+
+# IDE files
+../.idea/
+../*.iml
+../*.iws
+../*.ipr
+../.vscode/
+../.settings/
+../.project
+../.classpath
+../.factorypath
+
+# Git
+../.git/
+../.gitignore
+../.gitattributes
+
+# Documentation
+../*.md
+../docs/
+
+# Test resources (not needed in production)
+../src/test/
+
+# OS files
+../.DS_Store
+../Thumbs.db
+
+# Logs
+../*.log
+
+# Environment files (should be provided at runtime)
+.env
+.env.*
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+
+# Scripts
+../scripts/
+
+# CI/CD
+../.github/
+../.gitlab-ci.yml
+../Jenkinsfile
+
+# Temporary files
+../*.tmp
+../*.bak
+../*.swp
+../*~
