@@ -30,3 +30,18 @@ springdoc:
     enabled: false
     operations-sorter: method
   show-actuator: false
+
+# Actuator Configuration for Docker Health Checks
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+  health:
+    db:
+      enabled: true
+
