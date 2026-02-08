@@ -9,7 +9,6 @@ import com.doodle.scheduler.application.domain.common.events.Subscriber;
 import com.doodle.scheduler.application.domain.common.events.TimeSlotCreatedEvent;
 import com.doodle.scheduler.application.domain.user.model.User;
 import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
