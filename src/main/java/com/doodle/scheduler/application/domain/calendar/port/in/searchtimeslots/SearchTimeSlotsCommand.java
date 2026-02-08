@@ -1,4 +1,4 @@
-package com.doodle.scheduler.application.domain.calendar.command;
+package com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots;
 
 import java.time.Instant;
 

@@ -2,7 +2,7 @@ package com.doodle.scheduler.application.config.usecase.createtimeslot;
 
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.LoggedCreateTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.TransactionalCreateTimeSlotUseCaseDecorator;
-import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.createtimeslot.CreateTimeSlotUseCase;
 import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotsByUserPort;
 import com.doodle.scheduler.application.domain.calendar.port.out.SaveTimeSlotPort;
 import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;

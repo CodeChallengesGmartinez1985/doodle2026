@@ -5,8 +5,8 @@ import com.doodle.scheduler.application.adapter.in.rest.timeslot.common.BaseTime
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.dto.SearchTimeSlotsRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.dto.SearchTimeSlotsResponseDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.mapper.SearchTimeSlotsDtoMapper;
-import com.doodle.scheduler.application.domain.calendar.command.SearchTimeSlotsCommand;
-import com.doodle.scheduler.application.domain.calendar.port.in.SearchTimeSlotsUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

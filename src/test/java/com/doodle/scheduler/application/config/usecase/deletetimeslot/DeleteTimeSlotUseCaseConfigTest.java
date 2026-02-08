@@ -3,7 +3,7 @@ package com.doodle.scheduler.application.config.usecase.deletetimeslot;
 import com.doodle.scheduler.application.config.usecase.BaseUseCaseConfigTest;
 import com.doodle.scheduler.application.config.usecase.deletetimeslot.decorators.LoggedDeleteTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.deletetimeslot.decorators.TransactionalDeleteTimeSlotUseCaseDecorator;
-import com.doodle.scheduler.application.domain.calendar.port.in.DeleteTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

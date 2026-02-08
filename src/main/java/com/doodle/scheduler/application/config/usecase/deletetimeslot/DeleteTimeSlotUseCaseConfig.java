@@ -2,7 +2,7 @@ package com.doodle.scheduler.application.config.usecase.deletetimeslot;
 
 import com.doodle.scheduler.application.config.usecase.deletetimeslot.decorators.LoggedDeleteTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.deletetimeslot.decorators.TransactionalDeleteTimeSlotUseCaseDecorator;
-import com.doodle.scheduler.application.domain.calendar.port.in.DeleteTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotUseCase;
 import com.doodle.scheduler.application.domain.calendar.port.out.DeleteTimeSlotPort;
 import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotByIdPort;
 import com.doodle.scheduler.application.domain.calendar.service.DeleteTimeSlotServiceImpl;

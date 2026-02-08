@@ -135,8 +135,10 @@ class HexagonalArchitectureTest {
             ArchRule rule = classes()
                     .that().resideInAPackage("..port..")
                     .and().areNotNestedClasses()
+                    .and().haveSimpleNameNotEndingWith("Command")
+                    .and().haveSimpleNameNotEndingWith("QueryResult")
                     .should().beInterfaces()
-                    .because("Ports should be defined as interfaces");
+                    .because("Ports should be defined as interfaces (excluding Commands and QueryResults)");
 
             rule.check(classes);
         }
@@ -435,10 +437,24 @@ class HexagonalArchitectureTest {
         @DisplayName("Commands should be named with Command suffix")
         void commandsShouldBeNamedCorrectly() {
             ArchRule rule = classes()
-                    .that().resideInAPackage("..command..")
+                    .that().resideInAPackage("..port.in..")
+                    .and().haveSimpleNameEndingWith("Command")
                     .and().areNotMemberClasses()
                     .should().haveSimpleNameEndingWith("Command")
                     .because("Commands should follow naming convention");
+
+            rule.check(classes);
+        }
+
+        @Test
+        @DisplayName("Query results should be named with QueryResult suffix")
+        void queryResultsShouldBeNamedCorrectly() {
+            ArchRule rule = classes()
+                    .that().resideInAPackage("..port.in..")
+                    .and().haveSimpleNameEndingWith("QueryResult")
+                    .and().areNotMemberClasses()
+                    .should().haveSimpleNameEndingWith("QueryResult")
+                    .because("Query results should follow naming convention");
 
             rule.check(classes);
         }

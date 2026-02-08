@@ -5,7 +5,8 @@ import com.doodle.scheduler.application.adapter.in.rest.common.dto.PaginationDto
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.dto.SearchTimeSlotsRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.dto.SearchFiltersTimeSlotRequestDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.mapper.SearchTimeSlotsDtoMapperImpl;
-import com.doodle.scheduler.application.domain.calendar.port.in.SearchTimeSlotsUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsQueryResult;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -40,8 +41,8 @@ class SearchTimeSlotsControllerSliceTest extends BaseRestTest {
             // Given
             SearchTimeSlotsRequestDto requestDto = new SearchTimeSlotsRequestDto();
 
-            SearchTimeSlotsUseCase.SearchTimeSlotsResult result =
-                new SearchTimeSlotsUseCase.SearchTimeSlotsResult(
+            SearchTimeSlotsQueryResult result =
+                new SearchTimeSlotsQueryResult(
                     Collections.emptyList(),
                     0L,
                     0,
@@ -72,8 +73,8 @@ class SearchTimeSlotsControllerSliceTest extends BaseRestTest {
             PaginationDto pagination = new PaginationDto(0, 10);
             SearchTimeSlotsRequestDto requestDto = new SearchTimeSlotsRequestDto(filters, pagination);
 
-            SearchTimeSlotsUseCase.SearchTimeSlotsResult result =
-                new SearchTimeSlotsUseCase.SearchTimeSlotsResult(
+            SearchTimeSlotsQueryResult result =
+                new SearchTimeSlotsQueryResult(
                     Collections.emptyList(),
                     5L,
                     1,
@@ -102,8 +103,8 @@ class SearchTimeSlotsControllerSliceTest extends BaseRestTest {
             PaginationDto pagination = new PaginationDto(0, 10);
             SearchTimeSlotsRequestDto requestDto = new SearchTimeSlotsRequestDto(filters, pagination);
 
-            SearchTimeSlotsUseCase.SearchTimeSlotsResult result =
-                new SearchTimeSlotsUseCase.SearchTimeSlotsResult(
+            SearchTimeSlotsQueryResult result =
+                new SearchTimeSlotsQueryResult(
                     Collections.emptyList(),
                     3L,
                     1,

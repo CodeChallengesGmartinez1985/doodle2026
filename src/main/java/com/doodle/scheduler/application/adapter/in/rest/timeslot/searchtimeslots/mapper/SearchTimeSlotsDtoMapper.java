@@ -3,7 +3,7 @@ package com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslot
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.createtimeslot.dto.TimeSlotResponseDto;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.searchtimeslots.dto.SearchTimeSlotsResponseDto;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.in.SearchTimeSlotsUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsQueryResult;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -19,7 +19,7 @@ public interface SearchTimeSlotsDtoMapper {
     @Mapping(target = "state", source = "stateString")
     TimeSlotResponseDto toResponseDto(TimeSlot timeSlot);
 
-    default SearchTimeSlotsResponseDto toSearchResponseDto(SearchTimeSlotsUseCase.SearchTimeSlotsResult result) {
+    default SearchTimeSlotsResponseDto toSearchResponseDto(SearchTimeSlotsQueryResult result) {
         List<TimeSlotResponseDto> timeSlotDtos = result.timeSlots().stream()
                 .map(this::toResponseDto)
                 .toList();

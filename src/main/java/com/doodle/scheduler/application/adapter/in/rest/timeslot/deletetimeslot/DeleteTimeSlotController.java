@@ -2,8 +2,8 @@ package com.doodle.scheduler.application.adapter.in.rest.timeslot.deletetimeslot
 
 import com.doodle.scheduler.application.adapter.in.rest.common.ControllerConstants;
 import com.doodle.scheduler.application.adapter.in.rest.timeslot.common.BaseTimeSlotController;
-import com.doodle.scheduler.application.domain.calendar.command.DeleteTimeSlotCommand;
-import com.doodle.scheduler.application.domain.calendar.port.in.DeleteTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;

@@ -1,10 +1,10 @@
 package com.doodle.scheduler.application.domain.calendar.service;
 
-import com.doodle.scheduler.application.domain.calendar.command.DeleteTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotCommand;
 import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotNotFoundException;
 import com.doodle.scheduler.application.domain.calendar.model.Calendar;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.in.DeleteTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotUseCase;
 import com.doodle.scheduler.application.domain.calendar.port.out.DeleteTimeSlotPort;
 import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotByIdPort;
 import com.doodle.scheduler.application.domain.common.events.Publisher;

@@ -2,7 +2,7 @@ package com.doodle.scheduler.application.config.usecase.searchtimeslots;
 
 import com.doodle.scheduler.application.config.usecase.searchtimeslots.decorators.LoggedSearchTimeSlotsUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.searchtimeslots.decorators.TransactionalSearchTimeSlotsUseCaseDecorator;
-import com.doodle.scheduler.application.domain.calendar.port.in.SearchTimeSlotsUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsUseCase;
 import com.doodle.scheduler.application.domain.calendar.port.out.SearchTimeSlotsPort;
 import com.doodle.scheduler.application.domain.calendar.service.SearchTimeSlotsServiceImpl;
 import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;

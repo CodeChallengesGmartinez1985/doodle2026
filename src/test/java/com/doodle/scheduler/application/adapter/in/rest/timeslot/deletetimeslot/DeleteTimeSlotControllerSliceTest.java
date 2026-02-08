@@ -1,10 +1,10 @@
 package com.doodle.scheduler.application.adapter.in.rest.timeslot.deletetimeslot;
 
 import com.doodle.scheduler.application.adapter.in.rest.BaseRestTest;
-import com.doodle.scheduler.application.domain.calendar.command.DeleteTimeSlotCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotCommand;
 import com.doodle.scheduler.application.domain.calendar.exception.SlotAssignedToMeetingException;
 import com.doodle.scheduler.application.domain.calendar.exception.TimeSlotNotFoundException;
-import com.doodle.scheduler.application.domain.calendar.port.in.DeleteTimeSlotUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.deletetimeslot.DeleteTimeSlotUseCase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

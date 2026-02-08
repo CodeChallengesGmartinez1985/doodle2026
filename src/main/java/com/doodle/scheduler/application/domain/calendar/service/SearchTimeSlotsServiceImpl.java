@@ -1,8 +1,9 @@
 package com.doodle.scheduler.application.domain.calendar.service;
 
-import com.doodle.scheduler.application.domain.calendar.command.SearchTimeSlotsCommand;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.in.SearchTimeSlotsUseCase;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsCommand;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsQueryResult;
+import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsUseCase;
 import com.doodle.scheduler.application.domain.calendar.port.out.SearchTimeSlotsPort;
 import com.doodle.scheduler.application.domain.user.model.User;
 import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;
@@ -22,7 +23,7 @@ public class SearchTimeSlotsServiceImpl implements SearchTimeSlotsUseCase {
     }
 
     @Override
-    public SearchTimeSlotsResult execute(SearchTimeSlotsCommand command) {
+    public SearchTimeSlotsQueryResult execute(SearchTimeSlotsCommand command) {
         User user = loadUserByUsernamePort.loadUserByUsername(command.username());
         UUID userId = user.getId();
 
@@ -39,7 +40,7 @@ public class SearchTimeSlotsServiceImpl implements SearchTimeSlotsUseCase {
         long totalElements = searchResult.totalElements();
         int totalPages = (int) Math.ceil((double) totalElements / command.size());
 
-        return new SearchTimeSlotsResult(
+        return new SearchTimeSlotsQueryResult(
                 timeSlots,
                 totalElements,
                 totalPages,
