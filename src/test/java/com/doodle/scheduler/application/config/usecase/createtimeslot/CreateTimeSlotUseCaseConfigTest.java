@@ -1,5 +1,6 @@
 package com.doodle.scheduler.application.config.usecase.createtimeslot;
 
+import com.doodle.scheduler.application.config.usecase.BaseUseCaseConfigTest;
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.LoggedCreateTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.config.usecase.createtimeslot.decorators.TransactionalCreateTimeSlotUseCaseDecorator;
 import com.doodle.scheduler.application.domain.calendar.port.in.CreateTimeSlotUseCase;
@@ -7,9 +8,6 @@ import com.doodle.scheduler.application.domain.calendar.service.CreateTimeSlotSe
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.aot.DisabledInAotMode;
 import org.springframework.test.util.AopTestUtils;
 
 import java.lang.reflect.Field;
@@ -17,11 +15,8 @@ import java.lang.reflect.Field;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("test")
-@DisabledInAotMode
 @DisplayName("CreateTimeSlotUseCaseConfig - Decorator Wiring Test")
-class CreateTimeSlotUseCaseConfigTest {
+class CreateTimeSlotUseCaseConfigTest extends BaseUseCaseConfigTest {
 
     @Autowired
     private CreateTimeSlotUseCase createTimeSlotUseCase;
