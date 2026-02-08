@@ -486,6 +486,11 @@ The missing functionality can be added incrementally following the same architec
 
 - **Outbox Pattern**: Implement transactional outbox for reliable event publishing, storing domain events in the database within the same transaction as aggregate changes, then publishing asynchronously to guarantee at-least-once delivery and prevent event loss during failures.
 
+- **Concurrency Control for Shared Resources**: The current implementation assumes each user owns their private time slots, eliminating race conditions within a single user's calendar. However, if the system evolves to support **shared time slots** (e.g., conference rooms, shared calendars, or collaborative scheduling where multiple users can book the same resource), robust concurrency control mechanisms become essential. Potential solutions include:
+  - **Optimistic Locking**: Add a `@Version` field to `TimeSlotJpaEntity` for JPA-managed versioning, detecting concurrent modifications and retrying with exponential backoff when conflicts occur—ideal for low-contention scenarios with high throughput requirements.
+  - **Pessimistic Locking**: Use database-level locks (`SELECT ... FOR UPDATE`) to acquire exclusive access during booking operations, guaranteeing success but potentially reducing throughput in high-concurrency environments.
+  - **Database Constraints**: Implement partial unique indexes (e.g., `CREATE UNIQUE INDEX ON time_slots (resource_id, state, start_time, end_time) WHERE state = 'AVAILABLE'`) as a last line of defense to prevent double-booking at the database level.
+
 ---
 
 ## SOLID Practices
