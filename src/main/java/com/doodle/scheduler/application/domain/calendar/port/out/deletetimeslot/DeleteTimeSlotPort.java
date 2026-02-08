@@ -1,4 +1,4 @@
-package com.doodle.scheduler.application.domain.calendar.port.out;
+package com.doodle.scheduler.application.domain.calendar.port.out.deletetimeslot;
 
 import java.util.UUID;
 

@@ -4,7 +4,7 @@ import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
 import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsCommand;
 import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsQueryResult;
 import com.doodle.scheduler.application.domain.calendar.port.in.searchtimeslots.SearchTimeSlotsUseCase;
-import com.doodle.scheduler.application.domain.calendar.port.out.SearchTimeSlotsPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.searchtimeslots.SearchTimeSlotsPort;
 import com.doodle.scheduler.application.domain.user.model.User;
 import com.doodle.scheduler.application.domain.user.port.out.LoadUserByUsernamePort;
 

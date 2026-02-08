@@ -2,8 +2,8 @@ package com.doodle.scheduler.application.domain.calendar.service;
 
 import com.doodle.scheduler.application.domain.calendar.port.in.createtimeslot.CreateTimeSlotCommand;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.out.LoadTimeSlotsByUserPort;
-import com.doodle.scheduler.application.domain.calendar.port.out.SaveTimeSlotPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.searchtimeslots.LoadTimeSlotsByUserPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.createtimeslot.SaveTimeSlotPort;
 import com.doodle.scheduler.application.domain.common.events.Publisher;
 import com.doodle.scheduler.application.domain.common.events.Subscriber;
 import com.doodle.scheduler.application.domain.common.events.TimeSlotCreatedEvent;

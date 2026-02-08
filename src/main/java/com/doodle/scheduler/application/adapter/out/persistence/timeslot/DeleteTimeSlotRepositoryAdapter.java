@@ -1,7 +1,7 @@
 package com.doodle.scheduler.application.adapter.out.persistence.timeslot;
 
 import com.doodle.scheduler.application.adapter.out.persistence.timeslot.common.TimeSlotJpaRepository;
-import com.doodle.scheduler.application.domain.calendar.port.out.DeleteTimeSlotPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.deletetimeslot.DeleteTimeSlotPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

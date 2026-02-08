@@ -3,7 +3,7 @@ package com.doodle.scheduler.application.adapter.out.persistence.timeslot;
 import com.doodle.scheduler.application.adapter.out.persistence.BaseJpaSliceTest;
 import com.doodle.scheduler.application.adapter.out.persistence.timeslot.common.TimeSlotJpaMapperImpl;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.out.SearchTimeSlotsPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.searchtimeslots.SearchTimeSlotsPort;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

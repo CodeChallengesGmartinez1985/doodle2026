@@ -4,7 +4,7 @@ import com.doodle.scheduler.application.adapter.out.persistence.timeslot.common.
 import com.doodle.scheduler.application.adapter.out.persistence.timeslot.common.TimeSlotJpaEntity_;
 import com.doodle.scheduler.application.adapter.out.persistence.timeslot.common.TimeSlotJpaMapper;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
-import com.doodle.scheduler.application.domain.calendar.port.out.SearchTimeSlotsPort;
+import com.doodle.scheduler.application.domain.calendar.port.out.searchtimeslots.SearchTimeSlotsPort;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
