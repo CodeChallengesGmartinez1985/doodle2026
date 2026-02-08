@@ -9,7 +9,14 @@ import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "time_slots")
+@Table(name = "time_slots", indexes = {
+    @Index(name = "idx_time_slots_owner_id", columnList = "owner_id"),
+    @Index(name = "idx_time_slots_state", columnList = "state"),
+    @Index(name = "idx_time_slots_start_time", columnList = "start_time"),
+    @Index(name = "idx_time_slots_end_time", columnList = "end_time"),
+    @Index(name = "idx_time_slots_owner_state", columnList = "owner_id, state"),
+    @Index(name = "idx_time_slots_owner_start", columnList = "owner_id, start_time")
+})
 @Getter
 @Setter
 @NoArgsConstructor

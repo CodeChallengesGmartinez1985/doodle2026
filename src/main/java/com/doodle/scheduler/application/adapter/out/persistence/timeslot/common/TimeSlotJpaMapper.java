@@ -1,6 +1,5 @@
 package com.doodle.scheduler.application.adapter.out.persistence.timeslot.common;
 
-import com.doodle.scheduler.application.domain.calendar.model.Calendar;
 import com.doodle.scheduler.application.domain.calendar.model.timeslot.TimeSlot;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,10 +9,13 @@ public interface TimeSlotJpaMapper {
 
     default TimeSlot toDomain(TimeSlotJpaEntity entity) {
         if (entity == null) return null;
-        TimeSlot timeSlot = TimeSlot.create(entity.getId(), entity.getStartTime(), entity.getDurationMinutes());
-        Calendar calendar = Calendar.create(entity.getOwnerId());
-        timeSlot.setCalendar(calendar);
-        return timeSlot;
+        return TimeSlot.reconstitute(
+            entity.getId(),
+            entity.getOwnerId(),
+            entity.getStartTime(),
+            entity.getDurationMinutes(),
+            entity.getState()
+        );
     }
 
     @Mapping(target = "id", source = "id")

@@ -26,6 +26,20 @@ public class TimeSlot extends Entity {
         return new TimeSlot(id, range, AvailableState.INSTANCE);
     }
 
+    public static TimeSlot reconstitute(UUID id, UUID ownerId, Instant start, int durationMinutes, String stateString) {
+        Objects.requireNonNull(id, "id must not be null");
+        Objects.requireNonNull(ownerId, "ownerId must not be null");
+        Objects.requireNonNull(stateString, "stateString must not be null");
+
+        TimeRange range = TimeRange.of(start, durationMinutes);
+        SlotState state = SlotState.fromString(stateString);
+        Calendar calendar = Calendar.create(ownerId);
+
+        TimeSlot timeSlot = new TimeSlot(id, range, state);
+        timeSlot.setCalendar(calendar);
+        return timeSlot;
+    }
+
     public TimeRange getRange() {
         return range;
     }

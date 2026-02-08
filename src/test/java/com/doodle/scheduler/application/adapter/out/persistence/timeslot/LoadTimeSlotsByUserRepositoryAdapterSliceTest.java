@@ -21,8 +21,8 @@ class LoadTimeSlotsByUserRepositoryAdapterSliceTest extends BaseJpaSliceTest {
     @Autowired
     private LoadTimeSlotsByUserRepositoryAdapter loadAdapter;
 
-    private static final UUID TEST_USER_ID = UUID.fromString("550e8400-e29b-41d4-a716-446655440000");
-    private static final UUID ANOTHER_USER_ID = UUID.fromString("660e8400-e29b-41d4-a716-446655440001");
+    private static final UUID TEST_USER_ID = UUID.fromString("a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11");
+    private static final UUID ANOTHER_USER_ID = UUID.fromString("b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22");
 
     @Test
     @DisplayName("GIVEN user with multiple time slots WHEN loadTimeSlotsByUserId THEN returns all user's time slots")

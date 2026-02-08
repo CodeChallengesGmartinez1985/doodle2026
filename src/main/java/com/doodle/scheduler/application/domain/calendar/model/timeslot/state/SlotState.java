@@ -27,6 +27,14 @@ public abstract class SlotState {
 
     public abstract String getStateString();
 
+    public static SlotState fromString(String stateString) {
+        return switch (stateString) {
+            case "AVAILABLE" -> AvailableState.INSTANCE;
+            case "BUSY" -> BusyState.INSTANCE;
+            default -> throw new IllegalArgumentException("Unknown state: " + stateString);
+        };
+    }
+
     /**
      * Protected methods / constructors
      */
