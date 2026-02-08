@@ -1,2 +1,2 @@
 INSERT INTO users (id, username)
-VALUES (gen_random_uuid(), 'authenticated-user');
+VALUES ('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'authenticated-user');
